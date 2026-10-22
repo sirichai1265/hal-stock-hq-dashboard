@@ -1,0 +1,211 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock Report HQ &ndash; SINOKOR vs HEUNG A 2026-10-22</title>
+<style>
+:root{--navy:#0d2b46;--ink:#1b2735;--mut:#64748b;--line:#e2e8f0;--bkk:#1d6fe8;--lch:#d72638}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:#e9eef5;font:14px/1.5 "Segoe UI","Leelawadee UI","Noto Sans Thai",Roboto,sans-serif}
+.accent-bar{height:5px;background:linear-gradient(90deg,var(--bkk),var(--lch))}
+.wrap{max-width:1800px;margin:0 auto;padding:18px 18px 48px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;
+background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),url('header.jpg') center/cover;
+border:1px solid var(--line);border-radius:16px;padding:18px 26px;margin:0 0 12px;box-shadow:0 5px 16px rgba(15,35,60,.08)}
+.topbar img{height:46px;width:auto;object-fit:contain}
+h1{font-size:24px;margin:0 0 2px;color:var(--navy);font-weight:800}
+.sub{color:var(--mut);margin:0;font-size:14px}
+.toolbar{display:flex;gap:6px;margin:0 0 12px}
+.filter-btn{cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--mut);
+font-family:inherit;font-weight:700;font-size:12.5px;line-height:1;letter-spacing:.03em;
+padding:9px 18px;border-radius:999px;transition:all .15s}
+.filter-btn:hover{border-color:var(--bkk);color:var(--navy)}
+.filter-btn.active{color:#fff;border-color:transparent}
+.filter-btn[data-filter="all"].active{background:var(--navy)}
+.filter-btn[data-filter="bkk"].active{background:var(--bkk)}
+.filter-btn[data-filter="lch"].active{background:var(--lch)}
+.hide{display:none!important}
+.xl-wrap{overflow-x:auto;background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:10px}
+.xl{width:max-content;font-family:Arial,"Segoe UI","Noto Sans Thai",sans-serif;font-size:13px;color:#000}
+.xl-title{display:flex;align-items:stretch;border:2px solid #000;height:56px;margin:0 0 6px}
+.xl-title .t-name{display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:20px;color:#1f4e79;
+min-width:250px;border-right:2px solid #000}
+.xl-title .t-logo{flex:1;display:flex;align-items:center;padding:0 10px}
+.xl-title .t-logo img{height:44px;width:auto}
+.xl-title .t-date{display:flex;align-items:center;gap:22px;padding:0 18px;border-left:2px solid #000;min-width:210px;font-weight:700}
+.band{display:flex;align-items:flex-start}
+.band + .band{margin-top:8px}
+.zone{flex:none;border:2px solid #000}
+.xl.stacked .band{flex-direction:column;gap:8px}
+.xl table{border-collapse:collapse;table-layout:fixed}
+.xl col.c-loc,.xl col.c-typ{width:84px}
+.xl col.c-n{width:37px}
+.xl td,.xl th{border:1px solid #bfbfbf;height:21px;padding:0 1px;text-align:center;font-weight:400;
+white-space:nowrap;overflow:hidden;background:#fff}
+.xl th.hd{background:#d9d9d9;font-weight:700}
+.xl th.hd2{background:#d9d9d9;font-size:12.5px}
+.xl th.dt{background:#fff;font-weight:700}
+.xl .blue{color:#0000ff}
+.xl .sepl{border-left:2px solid #000}
+.xl thead tr:last-child th{border-bottom:2px solid #000}
+.xl .dep{color:#0000ff}
+.xl .na{background:#d9d9d9}
+.xl .ylw{background:#ffff99}
+.xl .mute{background:#b0b0b0}
+.xl td.loc,.xl td.typ{text-align:center}
+.xl tr.tot td{border-top:2px solid #000}
+.xl td.totl{background:#d9d9d9;font-weight:700}
+.xl tr.tot td.blue{color:#0000ff}
+.xl td.neg{background:#ffc7ce!important;color:#9c0006!important;font-weight:700}
+.nf-wrap{display:flex;flex-wrap:wrap;gap:22px;overflow-x:auto}
+.nf{font-family:Calibri,"Segoe UI","Noto Sans Thai",Arial,sans-serif;font-size:14px;color:#000}
+.nf table{border-collapse:collapse}
+.nf td,.nf th{border:1.5px solid #808080;height:27px;min-width:56px;padding:0 6px;text-align:center;font-weight:400;background:#fff}
+.nf th{background:#9dc3e6;font-weight:400}
+.nf thead tr:first-child th{font-weight:700;font-size:15px}
+.nf td.it{min-width:150px;text-align:center}
+.nf tr.gry td{background:#bfbfbf}
+.nf tr.org td{background:#fff2cc}
+.nf tr.bal td{font-weight:700}
+.nf tr.bal td.it{color:#000}
+.nf td.bl{color:#0000ff}
+.nf td.rd{color:#ff0000}
+.nf td.rng{border:none;background:none;text-align:left;padding-left:12px;white-space:nowrap;font-weight:400}
+.rf-wrap{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px}
+.rf{border:2px solid #000;font-family:Arial,"Segoe UI",sans-serif;font-size:13px}
+.rf table{border-collapse:collapse}
+.rf td,.rf th{border:1px solid #bfbfbf;height:21px;min-width:78px;padding:0 6px;text-align:center;font-weight:400;background:#fff}
+.rf th{background:#d9d9d9;font-weight:700}
+.rf tr.tot td{border-top:3px double #000;font-weight:700;background:#d9d9d9}
+.rf-title{font-weight:700;color:#1f4e79;margin:16px 0 0;font-size:15px}
+footer{margin-top:26px;color:var(--mut);font-size:12px;text-align:center}
+@media(max-width:600px){.topbar{flex-direction:column;align-items:flex-start;padding:14px 16px}
+.topbar img{height:34px}h1{font-size:20px}.wrap{padding:12px 10px 36px}}
+
+body{background:#eaf0f7}
+.ov{max-width:1320px;margin:0 auto;padding:22px 20px 48px}
+.ov-banner{position:relative;height:158px;border-radius:18px;overflow:hidden;
+background:#32414f url('header.jpg') center 38%/cover;box-shadow:0 8px 22px rgba(15,35,60,.18)}
+.ov-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,30,45,0) 25%,rgba(15,30,45,.62) 100%)}
+.ov-banner .bt{position:absolute;z-index:1;left:20px;bottom:14px;color:#fff}
+.ov-banner h1{margin:0;color:#fff;font-size:36px;line-height:1.15;font-weight:800;letter-spacing:.2px}
+.ov-banner .bs{font-size:13px;letter-spacing:.06em;opacity:.9;margin-top:2px}
+.ov-banner .bd{position:absolute;z-index:1;right:20px;bottom:14px;color:#fff;font:700 22px ui-monospace,Consolas,Menlo,monospace}
+.ov-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 4px}
+.nav{display:flex;gap:8px;margin:0 12px 0 0}
+.nav a{text-decoration:none;font-weight:700;font-size:13px;padding:8px 16px;border-radius:999px;
+border:1px solid var(--line);background:#fff;color:var(--mut)}
+.nav a:hover{border-color:var(--bkk);color:var(--navy)}
+.nav a.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.ov-bar .toolbar{margin:0}
+.zone-h{display:flex;align-items:baseline;gap:10px;margin:26px 0 12px}
+.zone-h h2{margin:0;font-size:36px;line-height:1.1;color:#1f6aa5;font-weight:800}
+.zone-h small{color:#8a97a6;font-size:13px;letter-spacing:.04em}
+.zone-h:after{content:"";flex:1;border-top:1px solid #cfd8e3;transform:translateY(-6px)}
+.ccard{background:#fff;border-radius:16px;border-left:5px solid #1e5bc6;box-shadow:0 6px 18px rgba(15,35,60,.09);
+padding:16px 20px 12px;overflow-x:auto}
+.cc-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.cc-n{display:flex;align-items:center;gap:10px}
+.cc-n i{width:11px;height:11px;border-radius:50%;background:#1e5bc6;display:inline-block}
+.cc-n b{display:block;color:#1e5bc6;font-size:17px;font-weight:800;letter-spacing:.02em;line-height:1.1}
+.cc-n small{display:block;color:#8a97a6;font-size:12.5px}
+.cc-u{text-align:right}
+.cc-u b{display:block;font:700 26px ui-monospace,Consolas,Menlo,monospace;color:#16222f;line-height:1.1}
+.cc-u small{color:#8a97a6;font-size:11px;letter-spacing:.08em}
+table.ct{width:100%;border-collapse:collapse;min-width:520px;font-family:ui-monospace,Consolas,Menlo,monospace;font-size:14px}
+.ct th{background:#f2f6fa;color:#8a97a6;font:600 11.5px "Segoe UI",sans-serif;padding:7px 8px;text-align:right}
+.ct th:first-child,.ct td:first-child{text-align:left}
+.ct td{padding:8px 8px;text-align:right;border-bottom:1px solid #e8eef4;color:#2b3a4a}
+.ct td:first-child{font:600 13px "Segoe UI","Leelawadee UI",sans-serif;color:#44566a;white-space:nowrap}
+.ct tr.cur td{font-weight:800;font-size:15.5px;color:#0f1b27;padding:11px 8px}
+.ct tr.cur td:first-child{font-size:15px;color:#0f1b27}
+.ct td.z{color:#aab6c3}
+.ct tr.bal td{border-bottom:0;padding-top:12px}
+.ct tr.bal td:first-child{font-weight:800;color:#0f1b27}
+.pill{display:inline-block;min-width:44px;text-align:center;padding:3px 9px;border-radius:9px;font-weight:700;font-size:13.5px}
+.p-sur{background:#dbeafe;color:#1d5fa8}.p-nor{background:#dcf3dc;color:#15803d}
+.p-tig{background:#fdf1c9;color:#946400}.p-sho{background:#fbd9d9;color:#b42318}
+.ov-det{margin:10px 0 0}
+.ov-det summary{cursor:pointer;color:#1f6aa5;font-size:13px;font-weight:700;padding:4px 0}
+table.gt{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+.gt th{white-space:nowrap;text-align:right;color:var(--mut);font-size:12px;font-weight:600;padding:6px;border-bottom:2px solid var(--line)}
+.gt th:first-child,.gt td:first-child{text-align:left}
+.gt td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.gt td.gname b{color:var(--navy)}
+.badge{display:inline-block;margin-left:6px;font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px;
+background:#e2e8f0;color:#475569;vertical-align:1px}
+.badge.dep{background:#dbeafe;color:#1d4ed8}
+.gt td.dash{color:#cbd5e1}
+.gt tr.tot td{border-top:2px solid var(--navy);font-weight:800;color:var(--navy);border-bottom:0}
+.cards2{display:grid;grid-template-columns:repeat(auto-fit,minmax(540px,1fr));gap:18px}
+.cards2 .ccard{min-width:0;padding:14px 14px 10px}
+.cards2 .ct{min-width:0;font-size:12.5px}
+.cards2 .ct td,.cards2 .ct th{padding-left:3px;padding-right:3px}
+.cards2 .ct td:first-child{font-size:12px;white-space:normal;width:84px;line-height:1.25}
+.cards2 .ct tr.cur td:first-child{font-size:13px}
+.cards2 .ct tr.cur td{font-size:14px}
+.cards2 .pill{min-width:0;padding:3px 5px;font-size:12px}
+.ccard.skr{border-left-color:#c0392b}.ccard.skr .cc-n i{background:#c0392b}.ccard.skr .cc-n b{color:#c0392b}
+.ov-leg{display:flex;flex-wrap:wrap;gap:18px;margin:26px 0 0;padding-top:14px;border-top:1px solid #cfd8e3;color:#5b6b7c;font-size:12.5px}
+.ov-leg span:before{content:"";display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.ov-leg .sur{--c:#1d5fa8}.ov-leg .nor{--c:#15803d}.ov-leg .tig{--c:#946400}.ov-leg .sho{--c:#b42318}
+.ov-note{margin:8px 0 0;color:#8a97a6;font-size:12px}
+@media(max-width:600px){.ov-banner h1{font-size:26px}.zone-h h2{font-size:28px}.ov-banner .bd{font-size:16px}}
+</style></head><body>
+<div class="ov">
+<header class="ov-banner"><div class="bt"><h1>Container Stock Condition</h1>
+<div class="bs">SINOKOR vs HEUNG A</div></div><div class="bd">22 Oct 2026</div></header>
+<div class="ov-bar"><nav class='nav'><a href='index.html'>📋 ตารางรายงาน</a><a href='overview.html'>📊 ภาพรวม</a><a href='compare.html' class='on'>⚖️ SINOKOR vs HEUNG A</a></nav>
+<div class="toolbar">
+<button type="button" class="filter-btn active" data-filter="all">ALL</button>
+<button type="button" class="filter-btn" data-filter="bkk">THBKK</button>
+<button type="button" class="filter-btn" data-filter="lch">THLCH</button>
+</div></div>
+<section data-zone='bkk'><div class='zone-h'><h2>Bangkok</h2><small>THBKK</small></div><div class='cards2'><div class='ccard skr'><div class='cc-h'><div class='cc-n'><i></i><div><b>SINOKOR</b><small>Bangkok</small></div></div><div class='cc-u'><b>2,326</b><small>UNITS ON HAND</small></div></div><table class='ct'><thead><tr><th>TYPE</th><th>22GP</th><th>42GP</th><th>45GP</th><th>22RE</th><th>45RE</th><th>22UT</th><th>42UT</th><th>22PC</th><th>42PC</th></tr></thead><tbody><tr class='cur'><td>Current stock</td><td>1,428</td><td class='z'>–</td><td>841</td><td>29</td><td>26</td><td class='z'>–</td><td>1</td><td class='z'>–</td><td>1</td></tr><tr class=''><td>MT return (inbound)</td><td>227</td><td class='z'>–</td><td>158</td><td>2</td><td>16</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, this wk</td><td>125</td><td class='z'>–</td><td>117</td><td>2</td><td>9</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, next wk</td><td>483</td><td class='z'>–</td><td>268</td><td>7</td><td>35</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class='bal'><td>Balance</td><td><span class='pill p-nor'>1,107</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-nor'>614</span></td><td><span class='pill p-nor'>22</span></td><td><span class='pill p-sho'>-2</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-tig'>1</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-tig'>1</span></td></tr></tbody></table></div><div class='ccard '><div class='cc-h'><div class='cc-n'><i></i><div><b>HEUNG A</b><small>Bangkok</small></div></div><div class='cc-u'><b>2,955</b><small>UNITS ON HAND</small></div></div><table class='ct'><thead><tr><th>TYPE</th><th>22GP</th><th>42GP</th><th>45GP</th><th>22RE</th><th>45RE</th><th>22UT</th><th>42UT</th><th>22PC</th><th>42PC</th></tr></thead><tbody><tr class='cur'><td>Current stock</td><td>1,578</td><td>4</td><td>1,317</td><td>40</td><td>16</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>MT return (inbound)</td><td>105</td><td class='z'>–</td><td>157</td><td>2</td><td>7</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, this wk</td><td>112</td><td class='z'>–</td><td>50</td><td>1</td><td>5</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, next wk</td><td>307</td><td class='z'>–</td><td>166</td><td>3</td><td>35</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class='bal'><td>Balance</td><td><span class='pill p-sur'>1,264</span></td><td><span class='pill p-tig'>4</span></td><td><span class='pill p-sur'>1,258</span></td><td><span class='pill p-sur'>38</span></td><td><span class='pill p-sho'>-17</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-sho'>0</span></td></tr></tbody></table></div></div></section><section data-zone='lch'><div class='zone-h'><h2>Laem Chabang</h2><small>THLCH</small></div><div class='cards2'><div class='ccard skr'><div class='cc-h'><div class='cc-n'><i></i><div><b>SINOKOR</b><small>Laem Chabang</small></div></div><div class='cc-u'><b>3,228</b><small>UNITS ON HAND</small></div></div><table class='ct'><thead><tr><th>TYPE</th><th>22GP</th><th>42GP</th><th>45GP</th><th>22RE</th><th>45RE</th><th>22UT</th><th>42UT</th><th>22PC</th><th>42PC</th></tr></thead><tbody><tr class='cur'><td>Current stock</td><td>1,785</td><td class='z'>–</td><td>1,376</td><td>5</td><td>54</td><td class='z'>–</td><td>5</td><td>1</td><td>2</td></tr><tr class=''><td>MT return (inbound)</td><td>193</td><td class='z'>–</td><td>157</td><td>1</td><td>4</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, this wk</td><td>160</td><td class='z'>–</td><td>114</td><td>1</td><td>31</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, next wk</td><td>228</td><td class='z'>–</td><td>224</td><td>4</td><td>10</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class='bal'><td>Balance</td><td><span class='pill p-sur'>2,038</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-sur'>1,195</span></td><td><span class='pill p-tig'>1</span></td><td><span class='pill p-tig'>17</span></td><td><span class='pill p-sho'>0</span></td><td><span class='pill p-nor'>5</span></td><td><span class='pill p-tig'>1</span></td><td><span class='pill p-tig'>2</span></td></tr></tbody></table></div><div class='ccard '><div class='cc-h'><div class='cc-n'><i></i><div><b>HEUNG A</b><small>Laem Chabang</small></div></div><div class='cc-u'><b>3,525</b><small>UNITS ON HAND</small></div></div><table class='ct'><thead><tr><th>TYPE</th><th>22GP</th><th>42GP</th><th>45GP</th><th>22RE</th><th>45RE</th><th>22UT</th><th>42UT</th><th>22PC</th><th>42PC</th></tr></thead><tbody><tr class='cur'><td>Current stock</td><td>2,159</td><td>1</td><td>1,297</td><td>11</td><td>51</td><td>1</td><td>2</td><td>2</td><td>1</td></tr><tr class=''><td>MT return (inbound)</td><td>99</td><td class='z'>–</td><td>138</td><td>1</td><td>22</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, this wk</td><td>123</td><td class='z'>–</td><td>80</td><td class='z'>–</td><td>18</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class=''><td>Booking, next wk</td><td>211</td><td class='z'>–</td><td>125</td><td class='z'>–</td><td>15</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td><td class='z'>–</td></tr><tr class='bal'><td>Balance</td><td><span class='pill p-sur'>2,282</span></td><td><span class='pill p-tig'>1</span></td><td><span class='pill p-sur'>1,230</span></td><td><span class='pill p-nor'>12</span></td><td><span class='pill p-nor'>40</span></td><td><span class='pill p-tig'>1</span></td><td><span class='pill p-tig'>2</span></td><td><span class='pill p-tig'>2</span></td><td><span class='pill p-tig'>1</span></td></tr></tbody></table></div></div></section>
+<div class="ov-leg"><span class="sur">Surplus</span><span class="nor">Normal</span>
+<span class="tig">Tight</span><span class="sho">Shortage</span></div>
+<p class="ov-note">SINOKOR: จากไฟล์ Daily Container Stock (ชีต New Format; booking 22-25/10 และ 26-01/11) ·
+HEUNG A: จากรายงานนี้ · Balance = ตู้ในสต็อก + ตู้ขาเข้า/E/P &minus; Booking 2 สัปดาห์ ·
+Shortage = คงเหลือ ≤ 0 · Tight &lt; 1 เท่าของ booking · Normal 1&ndash;3 เท่า · Surplus &gt; 3 เท่า</p>
+</div>
+<script>
+(function(){
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter-btn'));
+  var zoned = document.querySelectorAll('[data-zone]');
+  var wrap = document.getElementById('xlWrap');
+  var xl = document.getElementById('xl');
+  function fit(){
+    if (!wrap || !xl) return;
+    xl.style.zoom = 1;
+    xl.classList.remove('stacked');
+    var avail = wrap.clientWidth - 22;
+    var natural = xl.getBoundingClientRect().width;
+    var zonesShown = xl.querySelectorAll('.band')[0].querySelectorAll('.zone:not(.hide)').length;
+    var s = Math.min(1, avail / natural);
+    if (zonesShown > 1 && s < 0.72) {
+      xl.classList.add('stacked');
+      natural = xl.getBoundingClientRect().width;
+      s = Math.max(0.7, Math.min(1, avail / natural));
+    } else {
+      s = Math.max(0.5, s);
+    }
+    xl.style.zoom = s;
+  }
+  function apply(filter){
+    for (var i = 0; i < zoned.length; i++) {
+      var z = zoned[i].getAttribute('data-zone');
+      zoned[i].classList.toggle('hide', filter !== 'all' && z !== filter);
+    }
+    buttons.forEach(function(b){ b.classList.toggle('active', b.dataset.filter === filter); });
+    try { localStorage.setItem('halStockFilter', filter); } catch (e) {}
+    fit();
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.dataset.filter); });
+  });
+  var saved = 'all';
+  try { saved = localStorage.getItem('halStockFilter') || 'all'; } catch (e) {}
+  apply(saved);
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+})();
+</script>
+</body></html>
